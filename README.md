@@ -478,7 +478,6 @@ git branch -M $(git remote show origin | grep "HEAD branch" | cut -d " " -f5) 2>
 | `Permission denied` 或 `403` | Token 无效或权限不足 | 检查 Token 是否勾选 `repo` 权限，且未过期；重新生成 Token 并替换 |
 | `src refspec main does not match any` | 本地分支名不是 `main` | 执行 `git branch` 查看实际分支名，修改推送脚本中的 `$branch` 变量与之相同 |
 </details>
-```
 
 ---
 
