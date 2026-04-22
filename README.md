@@ -642,6 +642,28 @@ git branch -M $(git remote show origin | grep "HEAD branch" | cut -d " " -f5) 2>
 
 </details>
 
+<details>
+<summary>🌐 开着代理工具会影响测速结果吗？</summary>
+
+**会影响，尤其全局/TUN 模式。**
+
+| 测试阶段 | 是否走代理 | 说明 |
+| :--- | :--- | :--- |
+| TCP 延迟测试 (Socket) | ❌ 直连 | 反映本机到节点的 RTT |
+| 带宽测速 (curl) | ❌ 直连 | 反映本机到 CDN 的速度 |
+| API 请求类 (requests) | ✅ 跟随系统代理 | 获取节点、可用性、纯净度、微信通知等 |
+| Git 推送 (git) | ✅ 跟随系统代理 | 涉及 `github.com` 等 |
+
+**涉及域名：**  
+`cm.edu.kg` · `cmliussss.net` · `090227.xyz` · `cloudflare.com` · `zjiecode.com` · `github.com` · `githubusercontent.com` · `ipapi.is`
+
+**建议：**  
+1. 检查本机能否直连上述域名 → 能通设 `DIRECT`，不通设 `PROXY`  
+2. **运行程序时关闭全局模式 / TUN 模式**  
+3. 不确定网络情况就直接**退出代理工具再运行**
+
+</details>
+
 ---
 
 ## 🙏 致谢
